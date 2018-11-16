@@ -1,6 +1,17 @@
 package com.number.series.sum;
 
-public class FibonacciSeries {
+public class FibonacciSeries extends Thread{
+	
+	private long sum;
+	private long eTime;
+	
+	public long getSum() {
+		return sum;
+	}
+
+	public long geteTime() {
+		return eTime;
+	}
 	
 	public long sumOfFibonacciSeries(int n) {
 		if (n <= 0)
@@ -18,6 +29,14 @@ public class FibonacciSeries {
 		}
 
 		return sum;
+	}
+	
+	@Override
+	public void run() {
+		long fStartTime = System.currentTimeMillis();
+		sum = sumOfFibonacciSeries(n);
+		long fStopTime = System.currentTimeMillis();
+		eTime = fStopTime - fStartTime;
 	}
 	
 }

@@ -2,7 +2,19 @@ package com.number.series.sum;
 
 import java.util.Arrays;
 
-public class PrimeSeries {
+public class PrimeSeries extends Thread {
+
+	private long sum;
+	private long eTime;
+	private int n;
+	
+	public long getSum() {
+		return sum;
+	}
+
+	public long geteTime() {
+		return eTime;
+	}
 	
 	public long sumOfPrimeSeries(int n) {
 		
@@ -23,6 +35,14 @@ public class PrimeSeries {
             if (prime[i]) 
                 sum += i; 
         return sum; 
+	}
+	
+	@Override
+	public void run() {
+		long pStartTime = System.currentTimeMillis();
+		sum = sumOfPrimeSeries(n);
+		long pStopTime = System.currentTimeMillis();
+		long pTimeElapsed = pStopTime - pStartTime;
 	}
 	
 }

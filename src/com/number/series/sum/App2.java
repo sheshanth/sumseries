@@ -2,7 +2,10 @@ package com.number.series.sum;
 
 import java.util.Scanner;
 
-public class App {
+public class App2 {
+	
+	public static int n;
+	
 	public static void main(String[] args) throws InterruptedException {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
@@ -10,7 +13,7 @@ public class App {
 		/**
 		 * Acquiring the input number from the below statement
 		 */
-		final int n = scanner.nextInt();
+		n = scanner.nextInt();
 		
 		/**
 		 * Instance of all the Series class are created
@@ -23,7 +26,7 @@ public class App {
 		/**
 		 * here starts the fibonacci calculation with time elapsed
 		 */
-		Thread tF = new Thread(new Runnable() {
+		/*Thread tF = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -37,14 +40,16 @@ public class App {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
+		
+		f.start();
 		
 		
 		
 		/**
 		 * Here starts the prime calculation with time elapsed
 		 */
-		Thread tP = new Thread(new Runnable() {
+		/*Thread tP = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -58,13 +63,14 @@ public class App {
 					
 				}
 			}
-		});
+		});*/
 		
+		p.start();
 		
 		/**
 		 * here starts the sum of series with time elapsed
 		 */
-		Thread tS = new Thread(new Runnable() {
+		/*Thread tS = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -78,11 +84,16 @@ public class App {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 		
 		/*System.out.println("Sum of Fibonacci numbers = " + sumOfFibonacci + ". Time taken = " + fTimeElapsed + " ms");
 		System.out.println("Sum of Prime numbers = " + sumOfPrime + ". Time taken = " + pTimeElapsed + " ms");
 		System.out.println("Sum of N numbers = " + sumOfSeries + ". Time taken = " + sTimeElapsed + " ms");*/
+		
+		System.out.println("Sum of Fibonacci numbers = " + f.getSum() + ". Time taken = " + f.geteTime() + " ms");
+		System.out.println("Sum of Prime numbers = " + p.getSum() + ". Time taken = " + p.geteTime() + " ms");
+		
+		
 
 	}
 }
