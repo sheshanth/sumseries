@@ -1,21 +1,21 @@
 package com.number.series.sum;
 
-public class FibonacciSeries extends Thread{
-	
-	private long sum;
-	private long eTime;
-	
-	public long getSum() {
-		return sum;
+public class FibonacciSeries extends Thread {
+
+	public long sumOfF(int n) throws InterruptedException {
+		synchronized (this) {
+			long i = sumOfFibonacciSeries(n);
+			wait();
+			return i;
+		}
 	}
 
-	public long geteTime() {
-		return eTime;
-	}
-	
-	public long sumOfFibonacciSeries(int n) {
+	public long sumOfFibonacciSeries(int n) throws InterruptedException {
+
 		if (n <= 0)
 			return 0;
+		
+		Thread.sleep(5000);
 		
 		int fibo[] = new int[n + 1];
 		fibo[0] = 0;
@@ -27,16 +27,14 @@ public class FibonacciSeries extends Thread{
 			fibo[i] = fibo[i - 1] + fibo[i - 2];
 			sum += fibo[i];
 		}
-
 		return sum;
+
 	}
-	
-	@Override
-	public void run() {
-		long fStartTime = System.currentTimeMillis();
-		sum = sumOfFibonacciSeries(n);
-		long fStopTime = System.currentTimeMillis();
-		eTime = fStopTime - fStartTime;
+
+	public void res() throws InterruptedException {
+		synchronized (this) {
+			notify();
+		}
 	}
-	
+
 }

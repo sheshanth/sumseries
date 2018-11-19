@@ -2,6 +2,8 @@ package com.number.series.sum;
 
 import java.util.Scanner;
 
+import com.number.series.sum.v2.FibonacciSeries;
+
 public class App2 {
 	
 	public static int n;
