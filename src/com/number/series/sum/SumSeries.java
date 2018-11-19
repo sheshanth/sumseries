@@ -3,11 +3,8 @@ package com.number.series.sum;
 public class SumSeries {
 
 	public long sumOfS(int n) throws InterruptedException {
-		synchronized (this) {
 			long i = sumOfSeries(n);
-			wait();
 			return i;
-		}
 	}
 
 	public long sumOfSeries(int n) {
@@ -21,9 +18,9 @@ public class SumSeries {
 
 	}
 
-	public void res() throws InterruptedException {
+	/*public void res() throws InterruptedException {
 		synchronized (this) {
 			notify();
 		}
-	}
+	}*/
 }

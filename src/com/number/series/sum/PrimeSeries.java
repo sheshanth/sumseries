@@ -6,11 +6,11 @@ public class PrimeSeries extends Thread {
 
 
 	public long sumOfP(int n) throws InterruptedException {
-		synchronized (this) {
+		//synchronized (this) {
 			long i = sumOfPrimeSeries(n);
-			wait();
+			//wait();
 			return i;
-		}
+		//}
 	}
 
 	public long sumOfPrimeSeries(int n) {
@@ -36,11 +36,11 @@ public class PrimeSeries extends Thread {
 
 	}
 
-	public void res() throws InterruptedException {
+	/*public void res() throws InterruptedException {
 		synchronized (this) {
 			notify();
 		}
-	}
+	}*/
 	
 
 }

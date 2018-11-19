@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class App {
 
+	public static long sumOfFibonacci, sumOfPrime, sumOfSeries;
+	public static long fTimeElapsed, pTimeElapsed, sTimeElapsed;
+
 	public static void main(String[] args) throws InterruptedException {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
@@ -17,7 +20,7 @@ public class App {
 		FibonacciSeries f1 = new FibonacciSeries();
 		PrimeSeries p1 = new PrimeSeries();
 		SumSeries s1 = new SumSeries();
-		
+
 		/**
 		 * here starts the fibonacci calculation with time elapsed
 		 */
@@ -28,12 +31,14 @@ public class App {
 				try {
 
 					long fStartTime = System.currentTimeMillis();
-					long sumOfFibonacci = f1.sumOfF(n);
+					sumOfFibonacci = f1.sumOfF(n);
 					long fStopTime = System.currentTimeMillis();
-					long fTimeElapsed = fStopTime - fStartTime;
+					fTimeElapsed = fStopTime - fStartTime;
 
-					System.out.println(
-							"Sum of Fibonacci numbers = " + sumOfFibonacci + ". Time taken = " + fTimeElapsed + " ms");
+					/*
+					 * System.out.println( "Sum of Fibonacci numbers = " + sumOfFibonacci +
+					 * ". Time taken = " + fTimeElapsed + " ms");
+					 */
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,12 +56,14 @@ public class App {
 				try {
 
 					long pStartTime = System.currentTimeMillis();
-					long sumOfPrime = p1.sumOfP(n);
+					sumOfPrime = p1.sumOfP(n);
 					long pStopTime = System.currentTimeMillis();
-					long pTimeElapsed = pStopTime - pStartTime;
+					pTimeElapsed = pStopTime - pStartTime;
 
-					System.out
-							.println("Sum of Prime numbers = " + sumOfPrime + ". Time taken = " + pTimeElapsed + " ms");
+					/*
+					 * System.out .println("Sum of Prime numbers = " + sumOfPrime +
+					 * ". Time taken = " + pTimeElapsed + " ms");
+					 */
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -74,11 +81,14 @@ public class App {
 				try {
 
 					long sStartTime = System.currentTimeMillis();
-					long sumOfSeries = s1.sumOfS(n);
+					sumOfSeries = s1.sumOfS(n);
 					long sStopTime = System.currentTimeMillis();
-					long sTimeElapsed = sStopTime - sStartTime;
+					sTimeElapsed = sStopTime - sStartTime;
 
-					System.out.println("Sum of N numbers = " + sumOfSeries + ". Time taken = " + sTimeElapsed + " ms");
+					/*
+					 * System.out.println("Sum of N numbers = " + sumOfSeries + ". Time taken = " +
+					 * sTimeElapsed + " ms");
+					 */
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -90,45 +100,38 @@ public class App {
 		tP.start();
 		tS.start();
 
-		Thread tFF = new Thread(new Runnable() {
+		/*
+		 * Thread tFF = new Thread(new Runnable() {
+		 * 
+		 * @Override public void run() { try { f1.res(); } catch (Exception e2) {
+		 * e2.printStackTrace(); } } });
+		 * 
+		 * Thread tPP = new Thread(new Runnable() {
+		 * 
+		 * @Override public void run() { try { p1.res(); } catch (Exception e2) {
+		 * e2.printStackTrace(); } } });
+		 * 
+		 * Thread tSS = new Thread(new Runnable() {
+		 * 
+		 * @Override public void run() { try { s1.res(); } catch (Exception e2) {
+		 * e2.printStackTrace(); } } });
+		 * 
+		 * tFF.start(); tPP.start(); tSS.start();
+		 */
 
-			@Override
-			public void run() {
-				try {
-					f1.res();
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-			}
-		});
+		try {
+			tF.join();
+			tP.join();
+			tS.join();
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
 
-		Thread tPP = new Thread(new Runnable() {
+		System.out.println("Sum of Fibonacci numbers = " + sumOfFibonacci + ". Time taken = " + fTimeElapsed + " ms");
 
-			@Override
-			public void run() {
-				try {
-					p1.res();
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-			}
-		});
+		System.out.println("Sum of Prime numbers = " + sumOfPrime + ". Time taken = " + pTimeElapsed + " ms");
 
-		Thread tSS = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					s1.res();
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-			}
-		});
-
-		tFF.start();
-		tPP.start();
-		tSS.start();
+		System.out.println("Sum of N numbers = " + sumOfSeries + ". Time taken = " + sTimeElapsed + " ms");
 
 	}
 }

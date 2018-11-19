@@ -3,20 +3,18 @@ package com.number.series.sum;
 public class FibonacciSeries extends Thread {
 
 	public long sumOfF(int n) throws InterruptedException {
-		synchronized (this) {
+		//synchronized (this) {
 			long i = sumOfFibonacciSeries(n);
-			wait();
+			//wait();
 			return i;
-		}
+		//}
 	}
 
 	public long sumOfFibonacciSeries(int n) throws InterruptedException {
 
 		if (n <= 0)
 			return 0;
-		
 		Thread.sleep(5000);
-		
 		int fibo[] = new int[n + 1];
 		fibo[0] = 0;
 		fibo[1] = 1;
@@ -31,10 +29,10 @@ public class FibonacciSeries extends Thread {
 
 	}
 
-	public void res() throws InterruptedException {
+	/*public void res() throws InterruptedException {
 		synchronized (this) {
 			notify();
 		}
-	}
+	}*/
 
 }
